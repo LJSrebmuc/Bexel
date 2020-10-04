@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--test compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/search.css">
+    <link rel="stylesheet" href="/css/nav.css">
+
+
+    <!-- Icon selection code -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#f69005">
+    <meta name="theme-color" content="#fca631">
+    <title>Search!</title>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-static-top" style="background-color: #4a4a4a;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+                <a href="/home" class="navbar-brand"><img src="/img/Bexel_NameOnly.png" height="30" width=""></a>
+            </div>
+            <div id="navbarCollapse" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/MyAccount">My Account</a></li>
+                    <li><a href="/modifyClasses">My Classes</a></li>
+                    <li class="active"><a href="/search">Search</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="javascript:logOut();"><strong>Log Out</strong></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="jumbotron jumbocontent">
+                <div class="title">
+                    <h2>Search</h2>
+                </div>
+
+                <form id="searchBox">
+                    <div class="form-group">
+                        <input class="form-control col-xs-10" type="text" id="search" name="search" placeholder="Search..">
+                        <br><br>
+                    </div>
+                </form>
+                <div id="map" class="map"></div>
+            </div>
+        </div>
+    </div>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- load jquery -->
+    <script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js"></script>
+    <!-- load firebase library -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHb_Ra7dl02OImTNyEnLoGek4IA5Ck84g" type="text/javascript"></script>
+    <!-- load maps api -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        // initialise firebase
+        var config = {
+            apiKey: "AIzaSyCHb_Ra7dl02OImTNyEnLoGek4IA5Ck84g",
+            authDomain: "bexel-ed8b3.firebaseapp.com",
+            databaseURL: "https://bexel-ed8b3.firebaseio.com",
+            storageBucket: "bexel-ed8b3.appspot.com",
+            messagingSenderId: "325793789014"
+        };
+        firebase.initializeApp(config);
+
+    </script>
+    <script src="/Js/search.js"></script>
+    <script type="text/javascript">
+        function logOut() {
+            firebase.auth().signOut();
+            window.location = 'index';
+        }
+
+    </script>
+
+</body>
+
+</html>

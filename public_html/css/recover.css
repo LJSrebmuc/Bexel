@@ -1,0 +1,100 @@
+body {
+    padding-top: 30px;
+    background-color: transparent;
+}
+
+.back {
+    background: url('../img/recover.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    -webkit-filter: grayscale(20%) blur(7px);
+    -moz-filter: grayscale(20%) blur(7px);
+    -o-filter: grayscale(20%) blur(7px);
+    -ms-filter: grayscale(20%) blur(7px);
+    filter: grayscale(20%) blur(7px);
+    transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -o-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    overflow: hidden;
+}
+
+.panel-recover {
+    margin-top: 30px;
+    border-color: #ccc;
+    -webkit-box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.2);
+}
+
+.panel-recover>.panel-heading {
+    color: #4a4a4a;
+    background-color: #fff;
+    border-color: #fff;
+    text-align: center;
+}
+
+.panel-recover>.panel-heading hr {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    clear: both;
+    border: 0;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+    background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+    background-image: -ms-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+    background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+}
+
+.panel-login input[type="text"] {
+    height: 45px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+
+.btn-recover {
+    background-color: #f69005;
+    outline: none;
+    color: #fff;
+    font-size: 14px;
+    height: auto;
+    font-weight: normal;
+    padding: 14px 0;
+    text-transform: uppercase;
+    border-color: #fca731;
+}
+
+.btn-recover:hover,
+.btn-recover:focus {
+    color: #fff;
+    background-color: #fca731;
+    border-color: #fca731;
+}
+
+.modal-title,
+.modal-body {
+    color: #4a4a4a;
+    background-color: #fff;
+    border-color: #fff;
+    text-align: center;
+}
+
+p {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.modal {
+    padding-top: 50px;
+}

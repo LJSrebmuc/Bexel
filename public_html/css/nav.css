@@ -1,0 +1,14 @@
+.navbar-right:hover{
+    background-color: #8f5403;
+}
+.navbar-right>li>a{
+    color: aliceblue;
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:hover {
+    background-color: #646464;
+}
+
+.navbar-brand{
+    padding-top: 10px;
+}

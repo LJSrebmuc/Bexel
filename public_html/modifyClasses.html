@@ -1,0 +1,134 @@
+<DOCTYPE! HTML>
+<HTML>
+	<head>
+		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+         <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+   <!--test compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/nav.css">
+
+    
+     <!-- Icon selection code -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#f69005">
+    <meta name="theme-color" content="#fca631">
+        
+<title>My Classes</title>
+	</head>
+	<body>
+            <nav class="navbar navbar-inverse navbar-static-top" style="background-color: #4a4a4a;">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/home" class="navbar-brand"><img src="/img/Bexel_NameOnly.png" height="30" width=""></a>
+        </div>
+        <div id="navbarCollapse" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/MyAccount">My Account</a></li>
+                <li class="active"><a href="/modifyClasses">My Classes</a></li>
+                <li><a href="/search">Search</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="javascript:logOut();"><strong>Log Out</strong></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+	<div id = "mainContainer">
+		<h3>Your Classes</h3>
+		<div id = "list">
+			<div id = "classFormDiv">
+				<form id = "classForm">
+						<label class="control-label" for="title">Class Title:</label>
+                        <input class="form-control col-xs-10" id="title" type="text" name="title"><br>
+                        <label class="control-label" for="desc">Description:</label>
+                        <input class="form-control col-xs-10" id="desc" type="text" name="desc"><br>
+                        <label class="control-label" for="instr">Class Instructor:</label>
+                        <input class="form-control col-xs-10" id="instr" type="text" name="instr"><br>
+                        <label class="control-label" for="phone">Phone:</label>
+                        <input class="form-control col-xs-10" id="phone" type="text" name="phone"><br>
+                        <label class="control-label" for="email">Email:</label>
+                        <input class="form-control col-xs-10" id="email" type="text" name="email"><br>
+                        <label class="control-label" for="web">Website:</label>
+                        <input class="form-control col-xs-10" id="web" type="text" name="web"><br>
+                        <label class="control-label" for="face">Facebook:</label>
+                        <input class="form-control col-xs-10" id="face" type="text" name="face"><br>
+                        <label class="control-label" for="tweet">Twitter:</label>
+                        <input class="form-control col-xs-10" id="tweet" type="text" name="tweet"><br><br>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Script for connecting Database-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+	</script>
+	<!-- load jquery -->
+	<script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js"></script>
+	<!-- load firebase library -->
+	<script src="https://www.gstatic.com/firebasejs/3.6.0/firebase.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyCHb_Ra7dl02OImTNyEnLoGek4IA5Ck84g",
+	    authDomain: "bexel-ed8b3.firebaseapp.com",
+	    databaseURL: "https://bexel-ed8b3.firebaseio.com",
+	    storageBucket: "bexel-ed8b3.appspot.com",
+	    messagingSenderId: "325793789014"
+	  };
+	  firebase.initializeApp(config);
+	</script>
+	
+	<script>
+	//Script for getting a list of all classes associated with the user
+		var classid;
+        $(document).ready(function () { // load the function that moves you on if you already signed in.
+            var user, contentString;			
+            var unsub = firebase.auth().onAuthStateChanged(function (user) { // create a listener to waits for firebase initialisation before attempting to get currentUser. 
+                user = firebase.auth().currentUser;
+                if (!user) { //if not logged in, move user to the index page
+                    window.location = 'index';
+                }
+                var databaseRef = firebase.database().ref('classes/' + user.uid).orderByKey();         
+                databaseRef.on("value", function (snap) {
+                    snap.forEach(function (item) {
+						classid = item.key;
+							//console.log(classid);
+                        contentString = "<a id = \"link\">" + classid + "</a>";
+                            //console.log(contentString);
+						document.getElementById("list").innerHTML = contentString;
+                    });			
+                });
+                unsub(); //unsub() here is used to listen on pageload for a user if one is found then move on, if not then stop listening as the return value of unsub() is the function to kill the listener.
+                //This is needed as the database connection becomes erratic for other function while listener is active.
+            });
+        });
+	</script>
+		
+	<script>
+	//Script to display the form that allows users to change details
+		$("#link").click(function(){
+			$("#classForm").toggle();
+		});
+	</script>
+		
+    <script type="text/javascript">
+        function logOut(){
+            firebase.auth().signOut();
+            window.location = 'index';
+        }
+    </script>
+</body>
+</HTML>
